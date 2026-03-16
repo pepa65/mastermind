@@ -11,15 +11,15 @@ import (
 )
 
 const (
-	version = "0.2.1"
-	pegs   = 8
-	colors = 10
+	version = "0.2.2"
+	pegs    = 8
+	colors  = 10
 )
 
 func main() {
 	var secret string
 	if len(os.Args) > 2 {
-		fmt.Printf("Usage: mastermind [secret]\n")
+		fmt.Printf("mm v%s - Mastermind\nUsage:  mm [secret]\n", version)
 		os.Exit(-1)
 	} else if len(os.Args) == 1 {
 		rand.Seed(time.Now().UnixNano())
