@@ -1,9 +1,9 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/pepa65/mastermind)](https://goreportcard.com/report/github.com/pepa65/mastermind)
-[![GoDoc](https://godoc.org/github.com/pepa65/mastermind?status.svg)](https://godoc.org/github.com/pepa65/mastermind)
-[![GitHub](https://img.shields.io/github/license/pepa65/mastermind.svg)](LICENSE)
-[![run-ci](https://github.com/pepa65/mastermind/actions/workflows/ci.yml/badge.svg)](https://github.com/pepa65/mastermind/actions/workflows/ci.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/pepa65/mm)](https://goreportcard.com/report/github.com/pepa65/mm)
+[![GoDoc](https://godoc.org/github.com/pepa65/mm?status.svg)](https://godoc.org/github.com/pepa65/mm)
+[![GitHub](https://img.shields.io/github/license/pepa65/mm.svg)](LICENSE)
+[![run-ci](https://github.com/pepa65/mm/actions/workflows/ci.yml/badge.svg)](https://github.com/pepa65/mm/actions/workflows/ci.yml)
 
-# mm v0.3.0
+# mm v0.3.1
 **Mastermind**
 
 A [Golang](http://golang.org/) implementation of the solution to the [MasterMind](http://en.wikipedia.org/wiki/Mastermind_%28board_game%29) game.

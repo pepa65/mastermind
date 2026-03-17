@@ -14,7 +14,7 @@ func TestValidateSecretEmptySecret(t *testing.T) {
 		Secret: "",
 	}
 	var err = game.validateSecret()
-	assert.Equal(t, err, fmt.Errorf("The length of the secret should be 3"))
+	assert.Equal(t, err, fmt.Errorf("the length of the secret should be 3"))
 }
 
 func TestValidateSecretLongerThanPegs(t *testing.T) {
@@ -24,7 +24,7 @@ func TestValidateSecretLongerThanPegs(t *testing.T) {
 		Secret: "0123",
 	}
 	var err = game.validateSecret()
-	assert.Equal(t, err, fmt.Errorf("The length of the secret should be 3"))
+	assert.Equal(t, err, fmt.Errorf("the length of the secret should be 3"))
 }
 
 func TestValidateSecretContainsIllegalSymbol(t *testing.T) {
@@ -34,7 +34,7 @@ func TestValidateSecretContainsIllegalSymbol(t *testing.T) {
 		Secret: "1234",
 	}
 	var err = game.validateSecret()
-	assert.Equal(t, err, fmt.Errorf("The secret contains invalid symbols"))
+	assert.Equal(t, err, fmt.Errorf("the secret contains invalid symbols"))
 }
 
 func TestValidateSecretNoError(t *testing.T) {
