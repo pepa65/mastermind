@@ -3,13 +3,13 @@
 [![GitHub](https://img.shields.io/github/license/pepa65/mastermind.svg)](LICENSE)
 [![run-ci](https://github.com/pepa65/mastermind/actions/workflows/ci.yml/badge.svg)](https://github.com/pepa65/mastermind/actions/workflows/ci.yml)
 
-# mm v0.2.3
+# mm v0.3.0
 **Mastermind**
 
 A [Golang](http://golang.org/) implementation of the solution to the [MasterMind](http://en.wikipedia.org/wiki/Mastermind_%28board_game%29) game.
 
-* Repo: https://github.com/pepa65/mastermind
-* After: https://github.com/kevinjqiu/mastermind.git
+* Repo: https://github.com/pepa65/mm
+* After: https://github.com/kevinjqiu/mastermind
 
 ## Usage
 `mm [SECRET]`
@@ -19,17 +19,17 @@ The parameters `pegs` and `colors` can be adjusted in `main.go` for different ga
 ## Install
 ### Build locally (needs Golang install)
 ```
-git clone https://github.com/pepa65/mastermind
-cd mastermind
-CGO_ENABLED=0 go install -ldflags="-s -w" mm  # Flags for smaller binary
+git clone https://github.com/pepa65/mm
+cd mm
+CGO_ENABLED=0 go install -ldflags="-s -w"  # Flags for smaller binary
 upx --best --lzma mm  # Compress the binary for smaller size
 mv mm ~/bin/  # Assuming ~/bin is in PATH
 
 ### Install from remote repo
-`go install github.com/pepa65/mastermind@latest`
+`go install github.com/pepa65/mm@latest`
 
 ## Build
-`go build -a -o mm`
+`go build -a`
 
 ## Test
 `go test -a -v ./...`
