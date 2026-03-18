@@ -5,9 +5,7 @@ import (
 	"strings"
 )
 
-// A Result is a pair of integers indicating:
-// - the number of correct symbols and positions
-// - the number of correct symbols (but wrong position)
+// Result: pair of integers indicating: number of Well-placed and number of Misplaced pegs
 type Result [2]int
 
 func (r Result) ToString() string {
@@ -37,15 +35,21 @@ func (game *Game) validateSecret() error {
 }
 
 func (game *Game) generateInitialGuess() string {
-	/*var guess []rune
-	for i := 0; i < (game.Pegs+1)/2; i++ {
-		guess = append(guess, rune(game.Colors[0]))
+	var guess []rune
+	n := 0
+	for _, r := range game.Colors {
+		guess = append(guess, r)
+		n++
+		if n == game.Pegs {
+			break
+		}
+		guess = append(guess, r)
+		n++
+		if n == game.Pegs {
+			break
+		}
 	}
-	for i := 0; i < game.Pegs/2; i++ {
-		guess = append(guess, rune(game.Colors[1]))
-	}
-	return string(guess)*/
-	return "00112233445566778899AABBCCDDEEFFGGHH"[:game.Pegs]
+	return string(guess)
 }
 
 func (game *Game) generateSolutionSpace() []string {
@@ -89,21 +93,25 @@ func (game *Game) Solve() error {
 }
 
 func validateGuess(secret string, guess string) Result {
-	var (
-		correctPositions int
-		correctColors    int
-	)
+	correctPos := 0
+	wrongPos := 0
+	var counts [256]int
 	for i, g := range guess {
 		s := rune(secret[i])
 		if g == s {
-			correctPositions++
+			correctPos++
 		} else {
-			if strings.ContainsRune(secret, g) {
-				correctColors++
+			if counts[s] < 0 {
+				wrongPos++
 			}
+			if counts[g] > 0 {
+				wrongPos++
+			}
+			counts[s]++
+			counts[g]--
 		}
 	}
-	return Result{correctPositions, correctColors}
+	return Result{correctPos, wrongPos}
 }
 
 func eliminateSolutionSpace(solutionSpace []string, result Result, guess string) []string {

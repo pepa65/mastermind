@@ -2,15 +2,14 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
+	"math/rand/v2"
 	"os"
-	"time"
 
 	"github.com/pepa65/mm/mastermind"
 )
 
 const (
-	version = "0.3.1"
+	version = "0.4.0"
 	pegs    = 8
 	colors  = 10
 )
@@ -23,11 +22,10 @@ func main() {
 
 	Colors := "0123456789ABCDEFGKLMNOPQRSTUVXXYZ"[:colors]
 	var secret string
-	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
 	if len(os.Args) == 1 { // Generate a secret
 		n := pegs
 		for {
-			secret += string(Colors[rnd.Intn(colors)])
+			secret += string(Colors[rand.IntN(colors)])
 			n--
 			if n < 1 {
 				break

@@ -1,8 +1,7 @@
 package mastermind
 
 import (
-	"math/rand"
-	"time"
+	"math/rand/v2"
 )
 
 // This is the strategy that governs how the candidate is chosen given a solution space
@@ -13,7 +12,6 @@ type candidateChooser interface {
 type RandomCandidateChooser struct{}
 
 func (chooser RandomCandidateChooser) choose(solutionSpace []string) string {
-	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
-	r := rnd.Intn(len(solutionSpace))
+	r := rand.IntN(len(solutionSpace))
 	return solutionSpace[r]
 }

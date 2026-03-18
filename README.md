@@ -3,7 +3,7 @@
 [![GitHub](https://img.shields.io/github/license/pepa65/mm.svg)](LICENSE)
 [![run-ci](https://github.com/pepa65/mm/actions/workflows/ci.yml/badge.svg)](https://github.com/pepa65/mm/actions/workflows/ci.yml)
 
-# mm v0.3.1
+# mm v0.4.0
 **Mastermind**
 
 A [Golang](http://golang.org/) implementation of the solution to the [MasterMind](http://en.wikipedia.org/wiki/Mastermind_%28board_game%29) game.
@@ -27,6 +27,13 @@ mv mm ~/bin/  # Assuming ~/bin is in PATH
 
 ### Install from remote repo
 `go install github.com/pepa65/mm@latest`
+
+### Download
+```
+wget -O mm github.com/pepa65/mm/releases/download/v0.4.0/mm_0.3.2_linux_amd64
+chmod +x mm
+mv mm ~/bin/  # Provided ~/bin is in $PATH
+```
 
 ## Build
 `go build -a`
