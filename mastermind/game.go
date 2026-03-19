@@ -73,12 +73,13 @@ func (game *Game) Solve() error {
 		result     Result
 		numGuesses int
 	)
+	fmt.Printf("   Secret: %s\n", game.Secret)
 	solutionSpace := game.generateSolutionSpace()
 	guess := game.generateInitialGuess()
 	for {
 		result = game.validateGuess(guess)
 		numGuesses++
-		fmt.Printf("%2d: guess %s %-*s [from %d]\n", numGuesses, guess, game.Pegs, result.ToString(), len(solutionSpace))
+		fmt.Printf("%2d: guess: %s eval: %-*s [from: %d]\n", numGuesses, guess, game.Pegs, result.ToString(), len(solutionSpace))
 		if result[0] == game.Pegs {
 			return nil
 		}
