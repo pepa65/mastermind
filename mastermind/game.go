@@ -36,18 +36,18 @@ func (game *Game) validateSecret() error {
 
 func (game *Game) generateInitialGuess() string {
 	var guess []rune
-	n := 0
 	for _, r := range game.Colors {
 		guess = append(guess, r)
-		n++
-		if n == game.Pegs {
+		if len(guess) == game.Pegs {
 			break
 		}
 		guess = append(guess, r)
-		n++
-		if n == game.Pegs {
+		if len(guess) == game.Pegs {
 			break
 		}
+	}
+	for _ = range game.Pegs - len(guess) {
+		guess = append(guess, rune(game.Colors[0]))
 	}
 	return string(guess)
 }
@@ -60,8 +60,8 @@ func (game *Game) generateSolutionSpace() []string {
 	return cartesianProduct(sets)
 }
 
-func (game *Game) validateGuess(guess string) Result {
-	return validateGuess(game.Secret, guess)
+func (game *Game) scoreGuess(guess string) Result {
+	return scoreGuess(game.Secret, guess)
 }
 
 func (game *Game) Solve() error {
@@ -77,7 +77,7 @@ func (game *Game) Solve() error {
 	solutionSpace := game.generateSolutionSpace()
 	guess := game.generateInitialGuess()
 	for {
-		result = game.validateGuess(guess)
+		result = game.scoreGuess(guess)
 		numGuesses++
 		fmt.Printf("%2d: guess: %s eval: %-*s [from: %d]\n", numGuesses, guess, game.Pegs, result.ToString(), len(solutionSpace))
 		if result[0] == game.Pegs {
@@ -93,7 +93,7 @@ func (game *Game) Solve() error {
 	}
 }
 
-func validateGuess(secret string, guess string) Result {
+func scoreGuess(secret string, guess string) Result {
 	correctPos := 0
 	wrongPos := 0
 	var counts [256]int
@@ -118,7 +118,7 @@ func validateGuess(secret string, guess string) Result {
 func eliminateSolutionSpace(solutionSpace []string, result Result, guess string) []string {
 	retval := []string{}
 	for _, candidate := range solutionSpace {
-		if validateGuess(candidate, guess) == result {
+		if scoreGuess(candidate, guess) == result {
 			retval = append(retval, candidate)
 		}
 	}
