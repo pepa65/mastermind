@@ -53,7 +53,7 @@ func TestValidateGuessAllCorrect(t *testing.T) {
 		Colors: "0123",
 		Secret: "0123",
 	}
-	assert.Equal(t, game.validateGuess("0123"), Result{4, 0})
+	assert.Equal(t, game.scoreGuess("0123"), Result{4, 0})
 }
 
 func TestValidateGuessNoneCorrect(t *testing.T) {
@@ -62,7 +62,7 @@ func TestValidateGuessNoneCorrect(t *testing.T) {
 		Colors: "0123456789",
 		Secret: "0123",
 	}
-	assert.Equal(t, game.validateGuess("5678"), Result{0, 0})
+	assert.Equal(t, game.scoreGuess("5678"), Result{0, 0})
 }
 
 func TestValidateGuessAllColorsCorrect(t *testing.T) {
@@ -71,7 +71,7 @@ func TestValidateGuessAllColorsCorrect(t *testing.T) {
 		Colors: "0123456789",
 		Secret: "0123",
 	}
-	assert.Equal(t, game.validateGuess("3210"), Result{0, 4})
+	assert.Equal(t, game.scoreGuess("3210"), Result{0, 4})
 }
 
 func TestValidateGuessRepeatedColors(t *testing.T) {
@@ -80,7 +80,7 @@ func TestValidateGuessRepeatedColors(t *testing.T) {
 		Colors: "0123456789",
 		Secret: "0123",
 	}
-	assert.Equal(t, game.validateGuess("2233"), Result{1, 3})
+	assert.Equal(t, game.scoreGuess("2233"), Result{1, 1})
 }
 
 func TestGenerateSolutionSpace(t *testing.T) {

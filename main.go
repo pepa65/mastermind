@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	version    = "0.5.1"
+	version    = "0.5.2"
 	def_pegs   = 8
 	def_colors = 10
 )
